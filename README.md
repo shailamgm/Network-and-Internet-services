@@ -9,3 +9,6 @@ Repositori per al mòdul de serveis de xarxa i Internet (DHCP, DNS, web, FTP, co
 ### DNS
 1. [Servidor DNS amb BIND9](https://github.com/ShaiiX/Network-and-Internet-services/tree/main/DNS/NF1.2_PR3750101)
 2. [DNS dinàmic i DNSSEC](https://github.com/ShaiiX/Network-and-Internet-services/tree/main/DNS/NF1.2_PR3750102)
+
+### Web
+1. [Docker i Apache HTTP Server](https://github.com/ShaiiX/Network-and-Internet-services/tree/main/Web/PR03750301)

@@ -1,0 +1,8 @@
+[Sat Nov 07 22:13:27.533838 2026] [ssl:warn] [pid 1:tid 1] AH01906: secure-site-shailamartinez.local:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Sat Nov 07 22:13:27.534362 2026] [ssl:warn] [pid 1:tid 1] AH01909: secure-site-shailamartinez.local:443:0 server certificate does NOT include an ID which matches the server name
+[Sat Nov 07 22:13:27.560825 2026] [ssl:warn] [pid 1:tid 1] AH01906: secure-site-shailamartinez.local:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Sat Nov 07 22:13:27.561902 2026] [ssl:warn] [pid 1:tid 1] AH01909: secure-site-shailamartinez.local:443:0 server certificate does NOT include an ID which matches the server name
+[Sun Nov 08 11:45:16.501471 2026] [ssl:warn] [pid 1:tid 1] AH01906: secure-site-shailamartinez.local:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Sun Nov 08 11:45:16.502476 2026] [ssl:warn] [pid 1:tid 1] AH01909: secure-site-shailamartinez.local:443:0 server certificate does NOT include an ID which matches the server name
+[Sun Nov 08 11:45:16.529700 2026] [ssl:warn] [pid 1:tid 1] AH01906: secure-site-shailamartinez.local:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Sun Nov 08 11:45:16.530250 2026] [ssl:warn] [pid 1:tid 1] AH01909: secure-site-shailamartinez.local:443:0 server certificate does NOT include an ID which matches the server name

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <title>Apache Configurat</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background: #1a1a2e;
+            color: #eee;
+            padding: 40px;
+        }
+        .config-box {
+            background: #16213e;
+            border-left: 5px solid #0f3460;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        code {
+            background: #0f3460;
+            padding: 2px 8px;
+            border-radius: 3px;
+            color: #feca57;
+        }
+    </style>
+</head>
+<body>
+    <h1>Apache amb Configuració Personalitzada</h1>
+
+    <div class="config-box">
+        <h3>Funcionalitats actives:</h3>
+        <ul>
+            <li>Mòdul Rewrite activat</li>
+            <li>Capçaleres de seguretat configurades</li>
+            <li>Logging personalitzat amb temps de resposta</li>
+            <li>.htaccess permès (AllowOverride All)</li>
+        </ul>
+    </div>
+
+    <p>Comprova els logs amb: <code>docker logs apache-configured</code></p>
+</body>
+</html>

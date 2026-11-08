@@ -1,0 +1,12 @@
+RewriteEngine On
+
+# Bloquejar el directori private
+RewriteRule ^private(/|$) - [F,L]
+
+# Eliminar .html de les URLs
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.+)$ $1.html [L]
+
+# Capçalera de seguretat
+Header always set X-Secure-Site "true"

@@ -1,0 +1,16 @@
+172.17.0.1 - - [28/Oct/2026:21:29:55 +0000] "GET / HTTP/1.1" 200 1173 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36" 4887
+172.17.0.1 - - [28/Oct/2026:21:29:56 +0000] "GET /favicon.ico HTTP/1.1" 404 196 "http://localhost:8084/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36" 165
+172.17.0.1 - - [29/Oct/2026:11:35:58 +0000] "GET / HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36" 13311
+172.17.0.1 - - [29/Oct/2026:11:35:59 +0000] "GET /favicon.ico HTTP/1.1" 404 196 "http://localhost:8084/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36" 517
+172.17.0.1 - - [29/Oct/2026:14:37:12 +0000] "GET /old-page HTTP/1.1" 200 182 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36" 4766
+172.17.0.1 - - [29/Oct/2026:14:37:12 +0000] "GET /favicon.ico HTTP/1.1" 404 196 "http://localhost:8084/old-page" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36" 271
+172.17.0.1 - - [29/Oct/2026:14:37:19 +0000] "GET / HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36" 410
+172.17.0.1 - - [29/Oct/2026:14:38:24 +0000] "GET /old-page HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36" 520
+172.17.0.1 - - [29/Oct/2026:14:39:43 +0000] "GET /old-page HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36" 310
+172.17.0.1 - - [07/Nov/2026:18:44:09 +0000] "GET /old-page HTTP/1.1" 200 182 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36" 1876
+172.17.0.1 - - [07/Nov/2026:18:44:09 +0000] "GET /favicon.ico HTTP/1.1" 404 196 "http://localhost:8084/old-page" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36" 1048
+172.17.0.1 - - [07/Nov/2026:18:44:12 +0000] "GET /old-page HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36" 407
+172.17.0.1 - - [07/Nov/2026:18:44:12 +0000] "GET /old-page HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36" 326
+172.17.0.1 - - [08/Nov/2026:11:46:32 +0000] "HEAD /old-page%C3%A7 HTTP/1.1" 404 - "-" "curl/8.21.0" 1227
+172.17.0.1 - - [08/Nov/2026:11:46:45 +0000] "HEAD /old-page HTTP/1.1" 200 - "-" "curl/8.21.0" 640
+172.17.0.1 - - [08/Nov/2026:11:47:35 +0000] "HEAD /old-page HTTP/1.1" 200 - "-" "curl/8.21.0" 767

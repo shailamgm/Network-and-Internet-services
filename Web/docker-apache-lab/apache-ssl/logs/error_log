@@ -1,0 +1,9 @@
+[Sat Nov 07 22:13:27.535656 2026] [ssl:warn] [pid 1:tid 1] AH01906: localhost:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Sat Nov 07 22:13:27.563242 2026] [ssl:warn] [pid 1:tid 1] AH01906: localhost:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Sat Nov 07 22:13:27.570439 2026] [mpm_event:notice] [pid 1:tid 1] AH00489: Apache/2.4.65 (Unix) OpenSSL/3.5.9 configured -- resuming normal operations
+[Sat Nov 07 22:13:27.572272 2026] [core:notice] [pid 1:tid 1] AH00094: Command line: 'httpd -D FOREGROUND'
+[Sun Nov 08 11:45:16.504147 2026] [ssl:warn] [pid 1:tid 1] AH01906: localhost:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Sun Nov 08 11:45:16.531606 2026] [ssl:warn] [pid 1:tid 1] AH01906: localhost:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Sun Nov 08 11:45:16.537528 2026] [mpm_event:notice] [pid 1:tid 1] AH00489: Apache/2.4.65 (Unix) OpenSSL/3.5.9 configured -- resuming normal operations
+[Sun Nov 08 11:45:16.538034 2026] [core:notice] [pid 1:tid 1] AH00094: Command line: 'httpd -D FOREGROUND'
+[Sun Nov 08 12:07:33.793708 2026] [mpm_event:notice] [pid 1:tid 1] AH00492: caught SIGWINCH, shutting down gracefully

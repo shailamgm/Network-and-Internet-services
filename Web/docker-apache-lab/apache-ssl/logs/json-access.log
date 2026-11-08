@@ -1,0 +1,5 @@
+{ "timestamp": "2026-10-29T17:36:56", "client": "172.17.0.1", "request": "HEAD / HTTP/1.1", "status": 200, "bytes": -, "referer": "-", "user_agent": "curl/8.21.0", "response_time_us": 851 }
+{ "timestamp": "2026-10-29T17:37:20", "client": "172.17.0.1", "request": "GET /api/test HTTP/1.1", "status": 404, "bytes": 196, "referer": "-", "user_agent": "google", "response_time_us": 466 }
+{ "timestamp": "2026-11-07T20:14:53", "client": "172.17.0.1", "request": "HEAD /api/test HTTP/1.1", "status": 404, "bytes": -, "referer": "-", "user_agent": "Googlebot", "response_time_us": 516 }
+{ "timestamp": "2026-11-07T20:24:30", "client": "172.17.0.1", "request": "HEAD / HTTP/1.1", "status": 200, "bytes": -, "referer": "-", "user_agent": "curl/8.21.0", "response_time_us": 1557 }
+{ "timestamp": "2026-11-07T20:26:56", "client": "172.17.0.1", "request": "HEAD /prova.jpg HTTP/1.1", "status": 404, "bytes": -, "referer": "-", "user_agent": "curl/8.21.0", "response_time_us": 1176 }

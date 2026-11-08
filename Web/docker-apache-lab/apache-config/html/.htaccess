@@ -1,0 +1,15 @@
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.*)$ $1.html [L]
+
+RewriteRule ^old-page$ /new-page.html [L]
+
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
+
+Header set X-Powered-By "Apache-ASIX-Lab"
+Header always set X-Lab-Version "1.0"
+
+Options -Indexes
