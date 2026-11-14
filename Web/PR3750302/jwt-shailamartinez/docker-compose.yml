@@ -1,0 +1,41 @@
+services:
+  nginx:
+    image: nginx:1.27-alpine
+    container_name: nginx-jwt
+    environment:
+      DOMINI: ${DOMINI}
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/templates:/etc/nginx/templates:ro
+      - ./nginx/snippets:/etc/nginx/snippets:ro
+      - ./app:/usr/share/nginx/html:ro
+      - ./certs/wildcard.crt:/etc/nginx/certs/wildcard.crt:ro
+      - ./certs/wildcard.key:/etc/nginx/certs/wildcard.key:ro
+    depends_on:
+      - auth
+      - api
+    restart: unless-stopped
+
+  auth:
+    build: ./auth
+    container_name: auth-jwt
+    environment:
+      DOMINI: ${DOMINI}
+      TOKEN_TTL: ${TOKEN_TTL}
+    volumes:
+      - ./keys/jwt_private.pem:/keys/jwt_private.pem:ro
+      - ./keys/jwt_public.pem:/keys/jwt_public.pem:ro
+      - ./auth/users.json:/app/users.json:ro
+    restart: unless-stopped
+
+  api:
+    build: ./api
+    container_name: api-jwt
+    environment:
+      DOMINI: ${DOMINI}
+    volumes:
+      # L'API NOMÉS rep la clau pública
+      - ./keys/jwt_public.pem:/keys/jwt_public.pem:ro
+    restart: unless-stopped

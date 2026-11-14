@@ -1,0 +1,4 @@
+{
+  "shailamartinez":       {"hash": "scrypt:32768:8:1$G8bzX0wCFhYRbxko$38f920c70deb61083e044f28cd8c1f04fba759d2f3763132d81d1bf866301c1e25892358a4d913a2fac53a75df9c4e1205c5311e811e2f06212130ef56dbf38e", "role": "user"},
+  "admin-shailamartinez": {"hash": "scrypt:32768:8:1$TlnUxLzMqvCuIxPl$3ff1ba486801a129d54ccd826fe0a03d319dbb552df4bf2daf638677a487f7a4465b469b9ab451adbaaa824a770875f03743db68d55263a4ed270e756f497317", "role": "admin"}
+}

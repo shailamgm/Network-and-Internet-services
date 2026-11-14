@@ -11,4 +11,5 @@ Repositori per al mòdul de serveis de xarxa i Internet (DHCP, DNS, web, FTP, co
 2. [DNS dinàmic i DNSSEC](https://github.com/ShaiiX/Network-and-Internet-services/tree/main/DNS/NF1.2_PR3750102)
 
 ### Web
-1. [Docker i Apache HTTP Server](https://github.com/ShaiiX/Network-and-Internet-services/tree/main/Web/PR03750301)
+1. [SSO amb JWT a asix.cat](https://github.com/ShaiiX/Network-and-Internet-services/tree/main/Web/PR3750301)
+2. [](https://github.com/ShaiiX/Network-and-Internet-services/tree/main/Web/PR3750302)

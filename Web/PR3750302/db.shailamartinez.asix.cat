@@ -1,0 +1,13 @@
+$TTL 3600
+@       IN  SOA dns-master.shailamartinez.asix.cat. admin.shailamartinez.asix.cat. (
+            2026110101 ; serial (2026111301)
+            3600       ; refresh
+            900        ; retry
+            604800     ; expire
+            300 )      ; negative TTL
+@           IN  NS  dns-master.shailamartinez.asix.cat.
+dns-master  IN  A   172.24.63.10
+www         IN  A   172.24.63.20
+auth        IN  CNAME www
+api         IN  CNAME www
+app         IN  CNAME www
