@@ -1,0 +1,49 @@
+// 1. Quins fitxers cal llegir
+local.file_match "nginx" {
+  path_targets = [{"__path__" = "/var/log/nginx/access.json.log", "job" = "nginx"}]
+}
+
+// 2. Llegir-los línia a línia (com un tail -f)
+loki.source.file "nginx" {
+  targets    = local.file_match.nginx.targets
+  forward_to = [loki.process.nginx.receiver]
+}
+
+// 3. Extreure camps del JSON i convertir-ne alguns en etiquetes
+loki.process "nginx" {
+  stage.json {
+    expressions = { status = "status", method = "method", host = "host" }
+  }
+  stage.labels {
+    values = { status = "", method = "", host = "" }
+  }
+  forward_to = [loki.write.local.receiver]
+}
+
+// 4. Enviar-ho a Loki
+loki.write "local" {
+  endpoint {
+    url = "http://loki:3100/loki/api/v1/push"
+  }
+}
+
+// 5. Log de Fail2ban de l'amfitrió
+local.file_match "fail2ban" {
+  path_targets = [{"__path__" = "/var/log/fail2ban.log", "job" = "fail2ban"}]
+}
+
+loki.source.file "fail2ban" {
+  targets    = local.file_match.fail2ban.targets
+  forward_to = [loki.process.fail2ban.receiver]
+}
+
+// Línia d'exemple: ... NOTICE  [nginx-badbots] Ban 172.24.63.50
+loki.process "fail2ban" {
+  stage.regex {
+    expression = `\[(?P<jail>[a-z0-9-]+)\]\s+(?P<accio>Ban|Unban|Found)`
+  }
+  stage.labels {
+    values = { jail = "", accio = "" }
+  }
+  forward_to = [loki.write.local.receiver]
+}

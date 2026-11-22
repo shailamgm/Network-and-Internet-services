@@ -1,0 +1,109 @@
+# ${DOMINI} i ${XX} els substitueix la imatge de Nginx en arrencar (envsubst)
+
+# ---------- HTTP → HTTPS ----------
+server {
+    listen 80 default_server;
+    server_name _;
+    return 301 https://$host$request_uri;
+}
+
+# ---------- Peticions per IP o amb un Host desconegut: es tanca la connexió ----------
+server {
+    listen 443 ssl default_server;
+    server_name _;
+    ssl_certificate     /etc/nginx/certs/server.crt;
+    ssl_certificate_key /etc/nginx/certs/server.key;
+    return 444;
+}
+
+# ---------- web.DOMINI: l'aplicació ----------
+server {
+    listen 443 ssl;
+    http2 on;
+    server_name web.${DOMINI};
+
+    ssl_certificate     /etc/nginx/certs/server.crt;
+    ssl_certificate_key /etc/nginx/certs/server.key;
+    ssl_protocols       TLSv1.2 TLSv1.3;
+    ssl_session_cache   shared:SSL:10m;
+
+    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+    add_header X-Content-Type-Options    "nosniff" always;
+    add_header X-Frame-Options           "DENY" always;
+    add_header Referrer-Policy           "strict-origin-when-cross-origin" always;
+    add_header Content-Security-Policy   "default-src 'self'; object-src 'none'; frame-ancestors 'none'" always;
+    add_header Permissions-Policy        "camera=(), microphone=(), geolocation=()" always;
+
+    if ($bot_dolent) {
+        return 403;
+    }
+
+    # Fitxers que mai s'han de servir
+    location ~ /\.(?!well-known) {
+        return 404;
+    }
+    location ~* \.(bak|old|sql|swp|env|ini|log)$ {
+        return 404;
+    }
+    # Rutes típiques d'escaneig (no tenim WordPress ni phpMyAdmin)
+    location ~* ^/(wp-admin|wp-login\.php|phpmyadmin|xmlrpc\.php|cgi-bin) {
+        return 404;
+    }
+
+    location = /login {
+        limit_req zone=login burst=3 nodelay;
+        proxy_pass http://web:80;
+        include /etc/nginx/snippets/proxy_headers.conf;
+    }
+
+    location / {
+        limit_req  zone=general burst=20 nodelay;
+        limit_conn perip 20;
+        proxy_pass http://web:80;
+        include /etc/nginx/snippets/proxy_headers.conf;
+    }
+}
+
+# ---------- grafana.DOMINI: només des de la xarxa del laboratori ----------
+server {
+    listen 443 ssl;
+    http2 on;
+    server_name grafana.${DOMINI};
+
+    ssl_certificate     /etc/nginx/certs/server.crt;
+    ssl_certificate_key /etc/nginx/certs/server.key;
+    ssl_protocols       TLSv1.2 TLSv1.3;
+
+    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+    add_header X-Content-Type-Options    "nosniff" always;
+
+    # Xarxa del laboratori (la vostra 172.24.XX.0/24)
+    allow 172.24.${XX}.0/24;
+    deny  all;
+
+    location / {
+        proxy_pass http://grafana:3000;
+        include /etc/nginx/snippets/proxy_headers.conf;
+    }
+
+    location /api/live/ {
+        proxy_pass http://grafana:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade    $http_upgrade;
+        proxy_set_header Connection $connection_upgrade;
+        proxy_set_header Host       $host;
+    }
+}
+
+# ---------- stub_status: només per a l'exportador, port intern ----------
+server {
+    listen 8080;
+    server_name _;
+    access_log off;
+
+    location = /stub_status {
+        stub_status;
+        allow 10.10.${XX}.0/24;   # xarxa monitoratge
+        deny  all;
+    }
+}

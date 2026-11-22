@@ -1,0 +1,67 @@
+[DEFAULT]
+# Mai no es bandegen: la mateixa VM i la xarxa interna de monitoratge.
+# NO hi afegiu el client de proves, o no podreu fer l'apartat 6.7.
+ignoreip  = 127.0.0.1/8 ::1 10.10.63.0/24
+# Per defecte, les jails actuen sobre el trànsit que Docker reenvia als contenidors
+banaction = iptables-multiport
+chain     = DOCKER-USER
+port      = http,https
+backend   = auto
+nginx_log = /var/lib/docker/volumes/nginx-shailamartinez_nginx-logs/_data/access.json.log
+
+# ---------- Jails sobre el log de Nginx ----------
+[nginx-badbots]
+enabled  = true
+filter   = nginx-json-badbots
+logpath  = %(nginx_log)s
+maxretry = 1
+findtime = 1d
+bantime  = 1d
+
+[nginx-botsearch]
+enabled  = true
+filter   = nginx-json-botsearch
+logpath  = %(nginx_log)s
+maxretry = 3
+findtime = 10m
+bantime  = 1h
+
+[nginx-login]
+enabled  = true
+filter   = nginx-json-login
+logpath  = %(nginx_log)s
+maxretry = 5
+findtime = 10m
+bantime  = 30m
+
+[nginx-ratelimit]
+enabled  = true
+filter   = nginx-json-ratelimit
+logpath  = %(nginx_log)s
+maxretry = 3
+findtime = 1m
+bantime  = 10m
+
+# ---------- SSH de la VM (servei de l'amfitrió → INPUT) ----------
+[sshd]
+enabled  = true
+backend  = systemd
+chain    = INPUT
+port     = ssh
+maxretry = 3
+findtime = 10m
+bantime  = 30m
+filter = sshd[_daemon="sshd(?:-session)?", journalmatch="_SYSTEMD_UNIT=ssh.service + _COMM=sshd + _COMM=sshd-session"]
+
+# ---------- Reincidents: llegeix el log del mateix Fail2ban ----------
+# Bloqueja TOTS els ports, tant dels contenidors com de l'amfitrió.
+# Cada acció necessita un actname i un nom de cadena propis.
+[recidive]
+enabled   = true
+logpath   = /var/log/fail2ban.log
+banaction = iptables-allports
+action    = %(banaction)s[actname=docker, name=recidive-docker, chain=DOCKER-USER]
+            %(banaction)s[actname=host, name=recidive-host, chain=INPUT]
+maxretry  = 5
+findtime  = 1d
+bantime   = 1w
